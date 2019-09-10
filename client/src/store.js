@@ -9,7 +9,7 @@ Vue.use(Vuex)
 //Allows axios to work locally or live
 let base = window.location.host.includes('localhost:8080') ? '//localhost:3000/' : '/'
 
-let api = Axios.create({
+let _api = Axios.create({
   baseURL: base + "api/",
   timeout: 3000,
   withCredentials: true
@@ -18,15 +18,18 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     user: {},
-    boards: [],
-    activeBoard: {}
+    posts: [],
+    userSearchResults: []
   },
   mutations: {
     setUser(state, user) {
       state.user = user
     },
-    setBoards(state, boards) {
-      state.boards = boards
+    setPosts(state, posts) {
+      state.posts = posts
+    },
+    setUserSearchResults(state, users) {
+      state.userSearchResults = users
     }
   },
   actions: {
@@ -35,7 +38,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Register(creds)
         commit('setUser', user)
-        router.push({ name: "boards" })
+        router.push({ name: "home" })
       } catch (e) {
         console.warn(e.message)
       }
@@ -44,7 +47,7 @@ export default new Vuex.Store({
       try {
         let user = await AuthService.Login(creds)
         commit('setUser', user)
-        router.push({ name: "boards" })
+        router.push({ name: "home" })
       } catch (e) {
         console.warn(e.message)
       }
@@ -61,26 +64,26 @@ export default new Vuex.Store({
     },
     //#endregion
 
+    //#region -- USERS --
 
-    //#region -- BOARDS --
-    getBoards({ commit, dispatch }) {
-      api.get('boards')
-        .then(res => {
-          commit('setBoards', res.data)
-        })
-    },
-    addBoard({ commit, dispatch }, boardData) {
-      api.post('boards', boardData)
-        .then(serverBoard => {
-          dispatch('getBoards')
-        })
+    async findUsersByName({ commit, dispatch }, query) {
+      try {
+        //NOTE the query for this method will be the user name
+        let users = await _api.get('users/find?name=' + query)
+        commit('setUserSearchResults', users)
+      } catch (error) {
+        //TODO handle this catch
+      }
+
     }
     //#endregion
 
+    //#region -- POSTS --
 
-    //#region -- LISTS --
+    //#endregion
 
 
+    //#region -- COMMENTS --
 
     //#endregion
   }
