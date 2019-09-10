@@ -83,4 +83,4 @@ Since we are making multiple different routes (for followers and for following) 
 ### Stretch Goals:
 - Top 8: Users can set the top 8 profiles that they are following
 - Users can only like one time
-- Different kinds of 'likes' (:heart:, :sad:, :smile:, :barf:, :leaf:)
+- Different kinds of 'likes' (:heart:, :angry:, :smile:, :joy:, :banana:)
