@@ -1,51 +1,63 @@
-# Kanban
-<img class="img-responsive" src="https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+# `SocialSite.com`
+<img class="img-responsive" src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80">
 
-A Kanban board is a method for managing the creation of products with an emphasis on continual delivery while not overburdening the development team. Like Scrum, Kanban is a process designed to help teams work together more effectively. This application will provide users with a digital Kanban board, where they can manage several lists of tasks for each board.
+According to the mission statement of `SocialSite.com` they are a website that collaboratively administrates empowered markets via plug-and-play networks. Dynamically integrate B2C users after installed base benefits and dramatically visualizing customer directed convergence without revolutionary ROI.
+
+In other words they are the same as about all other SocialMedia platforms. Here are some you may be more familiar with: 
+
+<hr>
+
+#### Twitter
+<img class="img-responsive" src="https://cdn.cms-twdigitalassets.com/content/blog-twitter/official/en_us/topics/company/2018/introducing-us-election-labels-for-midterm-candidates/_jcr_content/par/rail-blog-container/column/image_2043522929.img.jpg/1527026763871.jpg">
+
+<hr>
+
+#### MySpace
+<img class="img-responsive" src="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2017/07/TomMySpace-796x432.png">
+
+<hr>
+
+#### Instagram
+<img class="img-responsive" src="https://media.sproutsocial.com/uploads/2018/05/Screenshot_20180529-125816.png">
+
+<hr>
 
 ## Goals
 
-In this checkpoint students will demonstrate a working knowledge of building full-stack applications. They will utilize a VueJs frontend implementing the Vuex design and Vue-Router to manage the dom. On the server side students will use Express with Node.js for their server, as well as implementing express-sessions for authentication, bcrypt for password hashing, mongoose as an ORM and MongoDB as their database.
-
-## The Buisness Logic
-
-Kanban is a simple enough application. Users have the request to be able to create and manage boards, lists, and tasks. Tasks should also have the ability to add notes or comments. This setup will take a while to get all ironed out but we have some time to work on it so don't fret.
-
-A board manages several lists. Once created lists can not be transfered between boards but they can be removed. If a list is removed go ahead and remove all of the tasks and comments on the list as well to avoid orphan data.
-
-A task should be able to move between any of the lists on whatever board it was created. Tasks can be removed individually. 
-
-Comments always belong to a task and will transfer with the task when moved. This should not require any extra efforts on your part. If a comment is created only the user who created the comment should be able to edit/remove it unless of course the task, list, or board is removed. 
+In this challenge students will demonstrate a working knowledge of building full-stack applications in a team environment with tight time deadlines. Groups will utilize a Vue.js frontend implementing the Vuex design and Vue-Router to manage the dom. On the server they will use Express with Node.js, express-sessions for authentication, bcrypt for password hashing, the mongoose ORM and MongoDB as their database. From a data standpoint, groups will create one to many relationships to manage posts and comments, and many to many relationships for managing user connections via a followers and following model.
 
 ## The Setup
 
-Perhaps on of the most important skills to obtain on your road to becoming a Software Engineer is the ability to work on large projects. Especially when those larger projects have a code scaffolding that has been set up by someone other than yourself. It is important to be able to jump into the mix of a development teams build and disect what everything is doing. 
+Before you dive right into the code of this project you will want to take some time to make a few decisions as a team. Some of the things to discuss are: 
+-   do you have a theme to your project and why your site stands out (it's for cats, you can only post gifs, etc.)
+-   the general design of the site (page layouts, views, components, etc), 
+-   create your trello backlog.
 
-As we move into these larger projects we are also going to start enforcing stricter guidelines to help teach the concepts of Object Oriented Programming.
+From there you will want to assign one member of the team to create the project (click "use this template") on their github and add each of the other team members as collaborators. This will allow anyone on the team to push and pull from this one github (each member will **NOT** need to fork their own copy, simply clone from the main users repository). From there, determine who will start with the backend and who will start with the front end.
 
-You will notice that there are two main directories in this project. One for the frontend and the other is for the server. Having these distinct directories helps create a separation of concerns. To help cement this even further you may want to open up two instances of vscode, one for each directory. 
-
-You will need to launch both the client and the server independently. Make sure you push the play button in vs code on both projects.
-
-The goal of each of these projects is to be decoupled from each other. Meaning your web front-end should have no idea if your backend ever has to change databases, switch servers, or any number of other things that can often occur. Likewise our backend server shouldn't care at all about what JS-Flavor-of-the-Week-Framework we are using, or even if requests are coming from a mobile application. With this process we are beginning the foundations of an N-Tier application.
-
-![n-tier](http://www.amzi.com/articles/youbet_architecture.gif)
-
+> TIP: you should only be coding on 2 computers, one for the client and one for the server. One partner typing and the other partner telling them what to write/researching. Switch who is typing and switch partners periodically throughout the day. All members should see all parts of the project at some point.
 
 ### Step 1
 
-It will probably be helpful to start on the backend of this application first. Utilize a tool like postman to create a user and start creating and editing your boards which has been setup for you already. Then move onto the other collections. 
+As a team work together to decide what your data models will look like. This will help ensure when you split up into your partners both teams have a good idea of the data they will be working with. Determine what properties are named, and stick with that naming convention. Additionally determine some of the business rules and user stories for your app ("users must be logged in to do _____.")
 
-On the server you will utilize a node-mongodb setup with express sessions and a mongoose ORM. The server side code needs to be setup similar to your previous projects*. You will need to create a new free database on atlas for this assignment. 
+From there the server team can start getting to work on creating models, services, and controllers. Meanwhile the frontend team can start to take the mockups that you did earlier and create the skeleton of the client architecture.
 
-The active user is always stored on the server side via sessions so you should be able to enforce some of the security concerns using something like `req.session.uid`
+### Step 2 
 
-For now all users can see only their boards and anyone can create boards, lists, tasks, or comments but only allow them to do so on their own boards. Once we have all of the features working we will move to an invite only board setup that will have boards belonging to a primary user and having contributors
+Every user has their own profile page, and per the business rules of `SocialSpace.com` all users posts are found on their profile, and anyone can see any other users profile and posts without having to specifically follow them. At the moment SocialSpace is not requiring a feed of all the posts from people you are following, though they may look at this in the future (stretch-goal). 
 
-*\* portions of this have already been done for you*
+To find users you will want to use a form input on the front-end to make a request to the database for matching users. This has been partially set up in the store and in the database in the `User` sections. 
 
-### Step 2
-The Web client will be a vue application. The project has already been initialized and some of the views/components established. Login/Register should all work for example, however it is up to you figure out what to do from there.
+> Deciding some of the early business rules will be very important your team. The more rules you define, even if they are 'no' rules, (any user can see another users posts without logging in) will help in building the application.
+
+### Step 3
+
+Connecting users introduces managing many to many relationships. A user can 'follow' another user, and visa-versa a user can be followed by another user. On their profile page users can see the people following them and the people they follow. A user can follow any other user they choose, without having to get a confirmation on permissions (twitter style). From a data standpoint, we are going to create another schema that will track the two user's ids (the `follower` and the `following`), you will also need routes to get all of the people a user is following, and all of their followers.
+
+> NOTE: Take care when returning user data, you should only ever return the 'public' data, such as the users name and if you add profile pic. (SEE: Mongoose 'select' or 'populate')
+
+Since we are making multiple different routes (for followers and for following) your client team will need to remember to not only get the user by the user id, but also get the followers and the following users when loading a profile page.
 
 ## Requirements
 
@@ -53,23 +65,22 @@ The Web client will be a vue application. The project has already been initializ
 
 - The Front End is styled (this is a broad concept, but put a bit of effort into it as this makes a great portfolio piece)
 - A user should not have to re-login everytime they refresh the page
-- From the **Boards** Page Users can create/delete their own boards
-- From the **Board** Page a user can create/delete The Lists associated with the board
-- Tasks can be created/deleted inside any list on the **Board** page
-- Tasks can be moved between lists (Does not have to be drag and drop)
-- A user can add and remove comments to a Task
+- From the **Home** Page Users will see their profile and can create/delete their own posts, posts may contain text, or an image, this is your decision on what can and can't be done
+- A user can add and remove (their own) comments to any post if they are logged in
+- Users can "like" a post and the number of likes is reflected on the post
+- Each post will show the users name and possibly profile image (if you include images, you might consider something like https://robohash.org/ as a default profile image)
+- From any profile page the users `followers` and `following` numbers are shown, with some sort of way to see all the accounts that are in those lists 
 
 ### Functionality
 
 - Only the creator of an object can delete it
 - A user Must have the ability to log in and out.
-- The Backend needs to be able to create and store the boards created by users
-- Each board can have lists
-- Each List can have tasks
-- Each task can have comments
-- Only authenticated users currently logged in can access the api
+- The Backend needs to be able to create and store the posts created by users
+- Each post can have comments
+- Posts have a like count
 
-### Bonus Ideas:
-- Add to the front and backend the ability to have collaborators on boards
-- Add Sockets to the project so any collaborator gets instant feedback when users modify a board
-- Comment authors username is next to the comment
+
+### Stretch Goals:
+- Top 8: Users can set the top 8 profiles that they are following
+- Users can only like one time
+- Different kinds of 'likes' (:heart:, :sad:, :smile:, :barf:, :leaf:)
